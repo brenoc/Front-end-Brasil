@@ -1,0 +1,250 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{mccpuc}
+\usepackage[dvips]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[portuges,brazilian]{babel}
+\usepackage{cite}
+\usepackage[dvipdfm]{hyperref}
+
+
+\begin{document}
+
+%% Preenchimento dos parâmetros da MCC
+\TextoPortugues{true} % 'true' para português, 'false' para inglês 
+\ISSNno{0103-9741} % Texto do ISSN
+\MCCSeqAno{02/10}  % Número e ano(YY) da MCC
+\TituloCapa{Exemplo de utilização de um\\ Pacote de Estilo \LaTeX \ para MCC}
+\TituloRosto{Exemplo de utilização de um Pacote de Estilo \LaTeX \ para MCC}
+\MesTexto{Mês/Month} % Mês por extenso, em português ou inglês
+\AnoYYYY{2010}   % Ano com 4 digitos
+\QtdLinhasTituloCapa{2} % Qtd de linhas do titulo na capa, de 1 até 4 linhas
+
+\QtdAutores{3} % Define quantidade de autores: 1, 2, ou 3
+%%%% Dados Autor 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AutorANome{Autor 1 (nome por extenso)}
+\AutorAemail{autor1@inf.ufrgs.br}
+\AutorADI{false} % 'true' se o autor for do DI
+\AutorAinst{ % Instituição do autor, caso não seja do DI
+Instituto de Informática – Universidade Federal do Rio Grande do Sul (UFRGS)}
+
+%%%% Dados Autor 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AutorBNome{Autor 2 (nome por extenso)}
+\AutorBemail{autor2@inf.puc-rio.br}
+\AutorBDI{true} % 'true' se o autor for do DI
+\AutorBinst{ % Instituição do autor, caso não seja do DI
+}
+
+%%%% Dados Autor 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AutorCNome{Autor 3 (nome por extenso)}
+\AutorCemail{autor3@cma.stanford.edu}
+\AutorCDI{false} % 'true' se o autor for do DI
+\AutorCinst{ % Instituição do autor, caso não seja do DI
+Center for Computer Research in Music and Acoustic, Stanford University, USA}
+
+
+\PatrocinioFlag{true} % 'true' para incluir nota de rodapé da folha de rosto
+\Patrocinio{ % Texto da nota de rodapé para patrocínio
+(este, ou outro, quando for aplicável) Trabalho patrocinado pelo Ministério de
+Ciência e Tecnologia da Presidência da República Federativa do Brasil (e agência
+de fomento e o número do processo, se aplicável). (Em Inglês: This work has been
+sponsored by the Ministério de Ciência e Tecnologia da Presidência da República
+Federativa do Brasil
+}
+
+
+\Resumo{  % Resumo em Português. Para Trabalho em Português
+Resumo em português, resumo em português, resumo em português, resumo em
+português, resumo em português, resumo em português, resumo em português, resumo
+em português, resumo em português, resumo em português, resumo em português,
+resumo em português, resumo em português, resumo em português, resumo em
+português, resumo em português, resumo em português, resumo em português, resumo
+em português, resumo em português, resumo em português, resumo em português,
+resumo em português, resumo em português, resumo em português, resumo em
+português, resumo em português, resumo em português, resumo em português, resumo
+em português, resumo em português. 
+}
+
+\PalavrasChave{ % Palavras-Chave em português
+Selecione até cinco palavras-chave que definam precisamente o con\-te\-ú\-do do
+seu trabalho.
+}
+
+\Abstract{ % Resumo em Inglês. Para trabalhos em Português ou Inglês
+Resumo em inglês, resumo em inglês, resumo em inglês, resumo em inglês, resumo
+em inglês, resumo em inglês, resumo em inglês, resumo em inglês, resumo em
+inglês, resumo em inglês, resumo em inglês, resumo em inglês, resumo em inglês,
+resumo em inglês, resumo em inglês, resumo em inglês, resumo em inglês, resumo
+em inglês, resumo em inglês, resumo em inglês, resumo em inglês, resumo em
+inglês, resumo em inglês, resumo em inglês, resumo em inglês, resumo em inglês,
+resumo em inglês, resumo em inglês, resumo em inglês, resumo em inglês, resumo
+em inglês,resumo em inglês. 
+}
+
+\Keyword{ % Palavras-Chaves em Inglês
+Select up to five keywords to precisely define the content of your work.}
+
+
+
+% Comando para geração da Capa
+\Capa
+
+% Comando para geração da Fohas de Rosto
+\FolhaRosto
+
+% TABLE OF CONTENTS -  OPTIONAL
+\Sumario{3} % Gera índice com profundidade x
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                         %%
+%%          BEGIN DOCUMENT                                 %%
+%%                                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Seção}
+
+Exemplo de citação \cite{article-full}, \cite{incollection-full},
+\cite{techreport-full}.
+
+Exemplo de referência para a subseção \ref{sec:subsec2}.
+
+Exemplo de figura.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[width=0.5\textwidth,keepaspectratio,
+bb= 14 14 1154 510]{./LogoPUC.jpg}
+\caption{Exemplo de figura}
+\label{fig:logo}
+\end{center}
+\end{figure}
+
+Exemplo de referência à figura \ref{fig:logo}.
+
+\subsection{Subseção}
+Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+Exemplo de nota de rodapé\footnote{Esta é uma nota de rodapé}, outra
+nota\footnote{Outra nota de rodapé}.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+Exemplo de lista sem numeração:
+\begin{itemize}
+ \item Item
+  \begin{itemize}
+   \item Subitem
+   \item Subitem
+   \item Subitem
+  \end{itemize}
+ \item Item
+  \begin{itemize}
+   \item Subitem
+  \end{itemize}
+\end{itemize}
+
+
+\noindent % Para não identar o parágrafo
+Exemplo de lista numerada:
+\begin{enumerate}
+ \item Item
+  \begin{enumerate}
+   \item Subitem
+   \item Subitem
+  \end{enumerate}
+ \item Item
+  \begin{enumerate}
+   \item Subitem
+   \item Subitem
+   \item Subitem
+  \end{enumerate}
+\end{enumerate}
+
+
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\subsection{Subseção}
+Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\section{Seção}
+Seção.
+
+\subsection{Subseção}\label{sec:subsec2}
+Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\subsection{Subseção}
+Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+
+
+
+
+%----------------------------------------------------------------------
+\addcontentsline{toc}{section}{Referências} % Para incluir no sumário
+\bibliographystyle{abnt-puc}
+\bibliography{exemplo} % Nome do arquivo Bibtex (*.bib)
+
+
+%----------------------------------------------------------------------
+\appendix % a partir daqui todas as seções são tratadas como apendices
+\newpage
+\section{Apendice}
+Seção.
+
+\subsection{Subseção}
+Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+
+\section{Apendice}
+Seção.
+
+\subsection{Subseção}
+Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+\subsubsection{Sub subseção}
+Sub Subseção.
+
+
+%------------------------------------------------------------------------- 
+
+\end{document}
+
+ 
