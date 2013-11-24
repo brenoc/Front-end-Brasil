@@ -54,3 +54,40 @@ Muitas vezes as pessoas escolhiam a opção Outro e depois digitavam "Nenhum" ou "
 
 Qual editor de código você utiliza?
 Criei uma nova coluna para os editores que não estavam listados, mas que foram mencionados mais de 10 vezes ao escolher a opção Outro.
+
+Padronizacao de termos para pergunta aberta
+
+Primeiramente tudo em lowercase
+
+Grunt: grunt(.js|js| js|)
+AngularJS: angular(.js|js| js|)
+CSS3: css(3| 3)
+HTML5: html(5| 5)
+Ember.js: ember(.js|js| js|)
+Sass: sass
+Pré-processador: (pré-|pre-|pre|pré)processador(es|)
+Automatização-de-Tarefas: (ferramenta(s|) de |)(automatizar|automatização|automação|task runner(s|))((( de| das| as)( tarefas| tarefa|))| tarefas| tarefa|)
+Sublime-Text: sublime(text| text|$| )
+Emmet: (emmet|zencoding)
+OOCSS: (ooCSS|oocss)
+LESS: less
+BackBone.js: backbone
+Node.js: node(.js|js| )
+AMD: amd
+Framework-js: (mvc |mv\* |)(framework(s|) js|framework javascript|frameworks)(?! CSS)
+Controle-de-versão: (controle de versão|versionamento de código)
+Testes: testes( unitários| integrados|)
+Framework-CSS: framework(s|) CSS
+TDD: tdd
+BDD: bdd
+Bootstrap: (twitter |)bootstrap
+SVN: svn
+Compass: compass
+Browserify: browserify
+Yeoman: yo|yeoman|yoman
+Foundation: foundation
+Dreamweaver: dreamweaver
+Require.js: requirejs
+Front-end: front-end|frontend|front
+Desenvolvimento-Ágil: desenvolvimento (agil|ágil)
+'': uso
