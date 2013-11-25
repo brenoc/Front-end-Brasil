@@ -15,6 +15,7 @@ condBackEnd = (dados["PER"] == "A")
 
 condUsaFrameworksJS = (dados["FRW.ANG"] == 1 | dados["FRW.BBO"] == 1 | dados["FRW.EMB"] == 1 | dados["FRW.KNO"] == 1 | dados["FRW.OTH"] == 1)
 condUsaApenasJquery = (is.na(dados["FRW.ANG"]) & is.na(dados["FRW.BBO"]) & is.na(dados["FRW.EMB"]) & is.na(dados["FRW.KNO"]) & is.na(dados["FRW.OTH"]) & dados["FRW.JQU"] == 1)
+condNaoUsaFrameworkJS = (is.na(dados["FRW.ANG"]) & is.na(dados["FRW.BBO"]) & is.na(dados["FRW.EMB"]) & is.na(dados["FRW.KNO"]) & is.na(dados["FRW.OTH"]) & is.na(dados["FRW.JQU"]))
 
 condInexperientes = (dados["EXP"] == "A")
 condPoucoExperientes = (dados["EXP"] == "B")
@@ -58,12 +59,6 @@ condNaoUsaOutraLing = (dados["LNG"] == "N")
 ssBackEnd <- subset(dados, condBackEnd)
 ssFrontEnd <- subset(dados, condFrontEnd)
 
-## Frameworks JS
-ssBackEndFrameworksJS <- subset(dados, condUsaFrameworksJS & condBackEnd)
-ssBackEndSoJquery <- subset(dados, condUsaApenasJquery & condBackEnd)
-ssFrontEndFrameworksJS <- subset(dados, condUsaFrameworksJS & condFrontEnd)
-ssFrontEndSoJquery <- subset(dados, condUsaApenasJquery & condFrontEnd)
-
 ## Experiência dos desenvolvedores Front-end
 ssFrontEndInexperientes <- subset(dados, condInexperientes & condFrontEnd)
 ssFrontEndPoucoExperientes <- subset(dados, condPoucoExperientes & condFrontEnd)
@@ -76,7 +71,41 @@ ssBackEndPoucoExperientes <- subset(dados, condPoucoExperientes & condBackEnd)
 ssBackEndExperientes <- subset(dados, condExperientes & condBackEnd)
 ssBackEndExperts <- subset(dados, condExperts & condBackEnd)
 
+## Frameworks JS
+ssBackEndFrameworksJS <- subset(dados, condUsaFrameworksJS & condBackEnd)
+ssBackEndSoJquery <- subset(dados, condUsaApenasJquery & condBackEnd)
+ssBackEndNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condBackEnd)
+ssFrontEndFrameworksJS <- subset(dados, condUsaFrameworksJS & condFrontEnd)
+ssFrontEndSoJquery <- subset(dados, condUsaApenasJquery & condFrontEnd)
+ssFrontEndNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condFrontEnd)
 
+#### Divido por Experiência
+
+ssBackEndInexperienteFrameworkJS <- subset(dados, condUsaFrameworksJS & condInexperientes & condBackEnd)
+ssBackEndInexperienteSoJquery <- subset(dados, condUsaApenasJquery & condInexperientes & condBackEnd)
+ssBackEndInexperienteNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condInexperientes & condBackEnd)
+ssBackEndPoucoExperienteFrameworkJS <- subset(dados, condUsaFrameworksJS & condPoucoExperientes & condBackEnd)
+ssBackEndPoucoExperienteSoJquery <- subset(dados, condUsaApenasJquery & condPoucoExperientes & condBackEnd)
+ssBackEndPoucoExperienteNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condPoucoExperientes & condBackEnd)
+ssBackEndExperienteFrameworkJS <- subset(dados, condUsaFrameworksJS & condExperientes & condBackEnd)
+ssBackEndExperienteSoJquery <- subset(dados, condUsaApenasJquery & condExperientes & condBackEnd)
+ssBackEndExperienteNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condExperientes & condBackEnd)
+ssBackEndExpertsFrameworkJS <- subset(dados, condUsaFrameworksJS & condExperts & condBackEnd)
+ssBackEndExpertsSoJquery <- subset(dados, condUsaApenasJquery & condExperts & condBackEnd)
+ssBackEndExpertsNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condExperts & condBackEnd)
+
+ssFrontEndInexperienteFrameworkJS <- subset(dados, condUsaFrameworksJS & condInexperientes & condFrontEnd)
+ssFrontEndInexperienteSoJquery <- subset(dados, condUsaApenasJquery & condInexperientes & condFrontEnd)
+ssFrontEndInexperienteNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condInexperientes & condFrontEnd)
+ssFrontEndPoucoExperienteFrameworkJS <- subset(dados, condUsaFrameworksJS & condPoucoExperientes & condFrontEnd)
+ssFrontEndPoucoExperienteSoJquery <- subset(dados, condUsaApenasJquery & condPoucoExperientes & condFrontEnd)
+ssFrontEndPoucoExperienteNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condPoucoExperientes & condFrontEnd)
+ssFrontEndExperienteFrameworkJS <- subset(dados, condUsaFrameworksJS & condExperientes & condFrontEnd)
+ssFrontEndExperienteSoJquery <- subset(dados, condUsaApenasJquery & condExperientes & condFrontEnd)
+ssFrontEndExperienteNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condExperientes & condFrontEnd)
+ssFrontEndExpertsFrameworkJS <- subset(dados, condUsaFrameworksJS & condExperts & condFrontEnd)
+ssFrontEndExpertsSoJquery <- subset(dados, condUsaApenasJquery & condExperts & condFrontEnd)
+ssFrontEndExpertsNaoFrameworkJS <- subset(dados, condNaoUsaFrameworkJS & condExperts & condFrontEnd)
 
 ## Novas Ferramentas e Práticas
 
@@ -223,13 +252,14 @@ nDados = nrow(dados)
 nDados100 = nDados / 100
 
 cFerramPraticas =c("Module\nPattern", "Package\nManager", "Ferramenta\n de Automatizacao\nde Tarefas", "Testes", "Controle\nVersão", "Pré-processador\nCSS", "Framework CSS", "Template Engine", "Outra\nLinguagem para JS")
+cExperiencias = c("Inexperientes", "Pouco Experientes", "Experientes", "Experts")
 
 # Gráficos
 
 ### Comparação da Experiência em Front-end
 aBackEndExp = c(nBackEndInexperientes / nBackEnd100, nBackEndPoucoExperientes / nBackEnd100, nBackEndExperientes / nBackEnd100, nBackEndExperts / nBackEnd100)
 aFrontEndExp = c(nFrontEndInexperientes / nFrontEnd100, nFrontEndPoucoExperientes / nFrontEnd100, nFrontEndExperientes / nFrontEnd100, nFrontEndExperts / nFrontEnd100)
-barplot(matrix(c(aBackEndExp, aFrontEndExp), 2, byrow=T), ylim=c(0,100), xlim=c(0,10), ylab="%", beside=T, space=c(0,0.2), density=5, angle=0, col=c("blue", "red"), names.arg=c("Inexperientes", "Pouco Experientes", "Experientes", "Experts"), main="Comparaçao\nda Experiência em Front-end", legend.text=c("Back-end", "Front-end"))
+barplot(matrix(c(aBackEndExp, aFrontEndExp), 2, byrow=T), ylim=c(0,100), xlim=c(0,10), ylab="%", beside=T, space=c(0,0.2), density=5, angle=0, col=c("blue", "red"), names.arg=cExperiencias, main="Comparaçao\nda Experiência em Front-end", legend.text=c("Back-end", "Front-end"))
 
 
 ## Uso de Novas Ferramentas e Práticas
@@ -238,66 +268,93 @@ barplot(matrix(c(aBackEndExp, aFrontEndExp), 2, byrow=T), ylim=c(0,100), xlim=c(
 aBackEndPraticas = c(nrow(ssBackEndUsaModulo)/nBackEnd100, nrow(ssBackEndUsaPackageManager)/nBackEnd100, nrow(ssBackEndUsaAutomat)/nBackEnd100, nrow(ssBackEndFazTestes)/nBackEnd100, nrow(ssBackEndUsaContrVer)/nBackEnd100, nrow(ssBackEndUsaPreProCSS)/nBackEnd100, nrow(ssBackEndUsaFrameworkCSS)/nBackEnd100, nrow(ssBackEndUsaTemplateEng)/nBackEnd100, nrow(ssBackEndUsaOutraLing)/nBackEnd100)
 barplot(aBackEndPraticas, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end")
 
-#### Dividido por Experiência
+	#### Dividido por Experiência
 
-#### Inexperientes
-aBackEndPraticasInexperientes = c(nrow(ssBackEndInexperienteUsaModulo)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaPackageManager)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaAutomat)/nBackEndInexperientes100, nrow(ssBackEndInexperienteFazTestes)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaContrVer)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaPreProCSS)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaFrameworkCSS)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaTemplateEng)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaOutraLing)/nBackEndInexperientes100)	
-barplot(aBackEndPraticasInexperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end Inexperientes")
+		#### Inexperientes
+		aBackEndPraticasInexperientes = c(nrow(ssBackEndInexperienteUsaModulo)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaPackageManager)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaAutomat)/nBackEndInexperientes100, nrow(ssBackEndInexperienteFazTestes)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaContrVer)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaPreProCSS)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaFrameworkCSS)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaTemplateEng)/nBackEndInexperientes100, nrow(ssBackEndInexperienteUsaOutraLing)/nBackEndInexperientes100)	
+		barplot(aBackEndPraticasInexperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end Inexperientes")
 
-#### Pouco Experientes
-aBackEndPraticasPoucoExperientes = c(nrow(ssBackEndPoucoExperienteUsaModulo)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaPackageManager)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaAutomat)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteFazTestes)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaContrVer)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaPreProCSS)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaFrameworkCSS)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaTemplateEng)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaOutraLing)/nBackEndPoucoExperientes100)
-barplot(aBackEndPraticasPoucoExperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end Pouco Experientes")
+		#### Pouco Experientes
+		aBackEndPraticasPoucoExperientes = c(nrow(ssBackEndPoucoExperienteUsaModulo)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaPackageManager)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaAutomat)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteFazTestes)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaContrVer)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaPreProCSS)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaFrameworkCSS)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaTemplateEng)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteUsaOutraLing)/nBackEndPoucoExperientes100)
+		barplot(aBackEndPraticasPoucoExperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end Pouco Experientes")
 
-#### Experientes
-aBackEndPraticasExperientes = c(nrow(ssBackEndExperienteUsaModulo)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaPackageManager)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaAutomat)/nBackEndExperientes100, nrow(ssBackEndExperienteFazTestes)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaContrVer)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaPreProCSS)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaFrameworkCSS)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaTemplateEng)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaOutraLing)/nBackEndExperientes100)	
-barplot(aBackEndPraticasExperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end Experientes")
+		#### Experientes
+		aBackEndPraticasExperientes = c(nrow(ssBackEndExperienteUsaModulo)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaPackageManager)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaAutomat)/nBackEndExperientes100, nrow(ssBackEndExperienteFazTestes)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaContrVer)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaPreProCSS)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaFrameworkCSS)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaTemplateEng)/nBackEndExperientes100, nrow(ssBackEndExperienteUsaOutraLing)/nBackEndExperientes100)	
+		barplot(aBackEndPraticasExperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end Experientes")
 
-#### Experts
-aBackEndPraticasExperts = c(nrow(ssBackEndExpertUsaModulo)/nBackEndExperts100, nrow(ssBackEndExpertUsaPackageManager)/nBackEndExperts100, nrow(ssBackEndExpertUsaAutomat)/nBackEndExperts100, nrow(ssBackEndExpertFazTestes)/nBackEndExperts100, nrow(ssBackEndExpertUsaContrVer)/nBackEndExperts100, nrow(ssBackEndExpertUsaPreProCSS)/nBackEndExperts100, nrow(ssBackEndExpertUsaFrameworkCSS)/nBackEndExperts100, nrow(ssBackEndExpertUsaTemplateEng)/nBackEndExperts100, nrow(ssBackEndExpertUsaOutraLing)/nBackEndExperts100)	
-barplot(aBackEndPraticasExperts, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end Experts")
+		#### Experts
+		aBackEndPraticasExperts = c(nrow(ssBackEndExpertUsaModulo)/nBackEndExperts100, nrow(ssBackEndExpertUsaPackageManager)/nBackEndExperts100, nrow(ssBackEndExpertUsaAutomat)/nBackEndExperts100, nrow(ssBackEndExpertFazTestes)/nBackEndExperts100, nrow(ssBackEndExpertUsaContrVer)/nBackEndExperts100, nrow(ssBackEndExpertUsaPreProCSS)/nBackEndExperts100, nrow(ssBackEndExpertUsaFrameworkCSS)/nBackEndExperts100, nrow(ssBackEndExpertUsaTemplateEng)/nBackEndExperts100, nrow(ssBackEndExpertUsaOutraLing)/nBackEndExperts100)	
+		barplot(aBackEndPraticasExperts, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end Experts")
 
-#### Comparando
-barplot(matrix(c(aBackEndPraticasInexperientes, aBackEndPraticasPoucoExperientes, aBackEndPraticasExperientes, aBackEndPraticasExperts), 4, byrow=T), ylim=c(0,100), xlim=c(0,35), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end", legend.text=c("Inexperientes", "Pouco Experientes", "Experientes", "Experts"), col=topo.colors(4))
+		#### Comparando
+		barplot(matrix(c(aBackEndPraticasInexperientes, aBackEndPraticasPoucoExperientes, aBackEndPraticasExperientes, aBackEndPraticasExperts), 4, byrow=T), ylim=c(0,100), xlim=c(0,35), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Back-end", legend.text=cExperiencias, col=topo.colors(4))
 
 ### Desenvolvedores Front-end
 aFrontEndPraticas = c(nrow(ssFrontEndUsaModulo)/nFrontEnd100, nrow(ssFrontEndUsaPackageManager)/nFrontEnd100, nrow(ssFrontEndUsaAutomat)/nFrontEnd100, nrow(ssFrontEndFazTestes)/nFrontEnd100, nrow(ssFrontEndUsaContrVer)/nFrontEnd100, nrow(ssFrontEndUsaPreProCSS)/nFrontEnd100, nrow(ssFrontEndUsaFrameworkCSS)/nFrontEnd100, nrow(ssFrontEndUsaTemplateEng)/nFrontEnd100, nrow(ssFrontEndUsaOutraLing)/nFrontEnd100)
 barplot(aFrontEndPraticas, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end")
 
-#### Dividido por Experiência
+	#### Dividido por Experiência
 
-#### Inexperientes
-aFrontEndPraticasInexperientes = c(nrow(ssFrontEndInexperienteUsaModulo)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaPackageManager)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaAutomat)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteFazTestes)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaContrVer)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaPreProCSS)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaFrameworkCSS)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaTemplateEng)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaOutraLing)/nFrontEndInexperientes100)	
-barplot(aFrontEndPraticasInexperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end Inexperientes")
+		#### Inexperientes
+		aFrontEndPraticasInexperientes = c(nrow(ssFrontEndInexperienteUsaModulo)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaPackageManager)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaAutomat)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteFazTestes)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaContrVer)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaPreProCSS)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaFrameworkCSS)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaTemplateEng)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteUsaOutraLing)/nFrontEndInexperientes100)	
+		barplot(aFrontEndPraticasInexperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end Inexperientes")
 
-#### Pouco Experientes
-aFrontEndPraticasPoucoExperientes = c(nrow(ssFrontEndPoucoExperienteUsaModulo)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaPackageManager)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaAutomat)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteFazTestes)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaContrVer)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaPreProCSS)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaFrameworkCSS)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaTemplateEng)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaOutraLing)/nFrontEndPoucoExperientes100)
-barplot(aFrontEndPraticasPoucoExperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end Pouco Experientes")
+		#### Pouco Experientes
+		aFrontEndPraticasPoucoExperientes = c(nrow(ssFrontEndPoucoExperienteUsaModulo)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaPackageManager)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaAutomat)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteFazTestes)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaContrVer)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaPreProCSS)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaFrameworkCSS)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaTemplateEng)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteUsaOutraLing)/nFrontEndPoucoExperientes100)
+		barplot(aFrontEndPraticasPoucoExperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end Pouco Experientes")
 
-#### Experientes
-aFrontEndPraticasExperientes = c(nrow(ssFrontEndExperienteUsaModulo)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaPackageManager)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaAutomat)/nFrontEndExperientes100, nrow(ssFrontEndExperienteFazTestes)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaContrVer)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaPreProCSS)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaFrameworkCSS)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaTemplateEng)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaOutraLing)/nFrontEndExperientes100)	
-barplot(aFrontEndPraticasExperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end Experientes")
+		#### Experientes
+		aFrontEndPraticasExperientes = c(nrow(ssFrontEndExperienteUsaModulo)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaPackageManager)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaAutomat)/nFrontEndExperientes100, nrow(ssFrontEndExperienteFazTestes)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaContrVer)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaPreProCSS)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaFrameworkCSS)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaTemplateEng)/nFrontEndExperientes100, nrow(ssFrontEndExperienteUsaOutraLing)/nFrontEndExperientes100)	
+		barplot(aFrontEndPraticasExperientes, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end Experientes")
 
-#### Experts
-aFrontEndPraticasExperts = c(nrow(ssFrontEndExpertUsaModulo)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaPackageManager)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaAutomat)/nFrontEndExperts100, nrow(ssFrontEndExpertFazTestes)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaContrVer)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaPreProCSS)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaFrameworkCSS)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaTemplateEng)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaOutraLing)/nFrontEndExperts100)
-barplot(aFrontEndPraticasExperts, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end Experts")
+		#### Experts
+		aFrontEndPraticasExperts = c(nrow(ssFrontEndExpertUsaModulo)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaPackageManager)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaAutomat)/nFrontEndExperts100, nrow(ssFrontEndExpertFazTestes)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaContrVer)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaPreProCSS)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaFrameworkCSS)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaTemplateEng)/nFrontEndExperts100, nrow(ssFrontEndExpertUsaOutraLing)/nFrontEndExperts100)
+		barplot(aFrontEndPraticasExperts, ylim=c(0,100), xlim=c(0,11), ylab="%", space=0.1, density=5, angle=0, cex.names=0.7, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end Experts")
 
-#### Comparando
-barplot(matrix(c(aFrontEndPraticasInexperientes, aFrontEndPraticasPoucoExperientes, aFrontEndPraticasExperientes, aFrontEndPraticasExperts), 4, byrow=T), ylim=c(0,100), xlim=c(0,35), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end", legend.text=c("Inexperientes", "Pouco Experientes", "Experientes", "Experts"), col=topo.colors(4))
+		#### Comparando
+		barplot(matrix(c(aFrontEndPraticasInexperientes, aFrontEndPraticasPoucoExperientes, aFrontEndPraticasExperientes, aFrontEndPraticasExperts), 4, byrow=T), ylim=c(0,100), xlim=c(0,35), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, names.arg=cFerramPraticas, main="Uso de Novas Ferramentas e Práticas\nDesenvolvedores Front-end", legend.text=cExperiencias, col=topo.colors(4))
 
 ### Front-end x Back-end
 barplot(matrix(c(aBackEndPraticas, aFrontEndPraticas), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas", legend.text=c("Back-end", "Front-end"))
 
 #### Dividido por Experiência
 
-#### Inexperientes
-barplot(matrix(c(aBackEndPraticasInexperientes, aFrontEndPraticasInexperientes), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas\nentre Inexperientes", legend.text=c("Back-end", "Front-end"))
+	#### Inexperientes
+	barplot(matrix(c(aBackEndPraticasInexperientes, aFrontEndPraticasInexperientes), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas\nentre Inexperientes", legend.text=c("Back-end", "Front-end"))
 
-#### Pouco Experientes	
-barplot(matrix(c(aBackEndPraticasPoucoExperientes, aFrontEndPraticasPoucoExperientes), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas\nentre Pouco Experientes", legend.text=c("Back-end", "Front-end"))
+	#### Pouco Experientes	
+	barplot(matrix(c(aBackEndPraticasPoucoExperientes, aFrontEndPraticasPoucoExperientes), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas\nentre Pouco Experientes", legend.text=c("Back-end", "Front-end"))
 
-#### Experientes
-barplot(matrix(c(aBackEndPraticasExperientes, aFrontEndPraticasExperientes), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas\nentre Experientes", legend.text=c("Back-end", "Front-end"))
+	#### Experientes
+	barplot(matrix(c(aBackEndPraticasExperientes, aFrontEndPraticasExperientes), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas\nentre Experientes", legend.text=c("Back-end", "Front-end"))
+	dev.off()
 
-#### Experts
-barplot(matrix(c(aBackEndPraticasExperts, aFrontEndPraticasExperts), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas\nentre experts", legend.text=c("Back-end", "Front-end"))
+	#### Experts
+	barplot(matrix(c(aBackEndPraticasExperts, aFrontEndPraticasExperts), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas\nentre Experts", legend.text=c("Back-end", "Front-end"))
+
+
+## Uso de Framework JS
+
+pFrameworkJS = barplot(mFrameworkJS, ylim=c(0,100), xlim=c(0,5), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=c("Apenas jQuery", "Outros\nFrameworks JS"), main="Comparação\ndo Uso de Frameworks Javascript", legend.text=c("Back-end", "Front-end"))
+
+### Back-end
+barplot(matrix(c(nrow(ssBackEndInexperienteSoJquery)/nBackEndInexperientes100, nrow(ssBackEndInexperienteFrameworkJS)/nBackEndInexperientes100, nrow(ssBackEndInexperienteNaoFrameworkJS)/nBackEndInexperientes100, nrow(ssBackEndPoucoExperienteSoJquery)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteFrameworkJS)/nBackEndPoucoExperientes100, nrow(ssBackEndPoucoExperienteNaoFrameworkJS)/nBackEndPoucoExperientes100, nrow(ssBackEndExperienteSoJquery)/nBackEndExperientes100, nrow(ssBackEndExperienteFrameworkJS)/nBackEndExperientes100, nrow(ssBackEndExperienteNaoFrameworkJS)/nBackEndExperientes100, nrow(ssBackEndExpertsSoJquery)/nBackEndExperts100, nrow(ssBackEndExpertsFrameworkJS)/nBackEndExperts100, nrow(ssBackEndExpertsNaoFrameworkJS)/nBackEndExperts100), 3, byrow=F), ylim=c(0,100), xlim=c(0,8), ylab="%", density=5, angle=0, cex.names=0.7, beside=F, col=topo.colors(3), legend.text=c("Apenas jQuery", "Outros Frameworks JS", "Não usa"), main="Back-end\nUsa Frameworks Javascript", names.arg=cExperiencias)
+
+barplot(matrix(c(nrow(ssFrontEndInexperienteSoJquery)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteFrameworkJS)/nFrontEndInexperientes100, nrow(ssFrontEndInexperienteNaoFrameworkJS)/nFrontEndInexperientes100, nrow(ssFrontEndPoucoExperienteSoJquery)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteFrameworkJS)/nFrontEndPoucoExperientes100, nrow(ssFrontEndPoucoExperienteNaoFrameworkJS)/nFrontEndPoucoExperientes100, nrow(ssFrontEndExperienteSoJquery)/nFrontEndExperientes100, nrow(ssFrontEndExperienteFrameworkJS)/nFrontEndExperientes100, nrow(ssFrontEndExperienteNaoFrameworkJS)/nFrontEndExperientes100, nrow(ssFrontEndExpertsSoJquery)/nFrontEndExperts100, nrow(ssFrontEndExpertsFrameworkJS)/nFrontEndExperts100, nrow(ssFrontEndExpertsNaoFrameworkJS)/nFrontEndExperts100), 3, byrow=F), ylim=c(0,100), xlim=c(0,8), ylab="%", density=5, angle=0, cex.names=0.7, beside=F, col=topo.colors(3), legend.text=c("Apenas jQuery", "Outros Frameworks JS", "Não usa"), main="Back-end\nUsa Frameworks Javascript", names.arg=cExperiencias)
+
+### Divido por Experiência
+	
+	aBackEndSoJqueryExp = c(nrow(ssBackEndInexperienteSoJquery)/nBackEndInexperientes100, nrow(ssBackEndPoucoExperienteSoJquery)/nBackEndPoucoExperientes100, nrow(ssBackEndExperienteSoJquery)/nBackEndExperientes100, nrow(ssBackEndExpertsSoJquery)/nBackEndExperts100)
+	aFrontEndSoJqueryExp = c(nrow(ssFrontEndInexperienteSoJquery)/nFrontEndInexperientes100, nrow(ssFrontEndPoucoExperienteSoJquery)/nFrontEndPoucoExperientes100, nrow(ssFrontEndExperienteSoJquery)/nFrontEndExperientes100, nrow(ssFrontEndExpertsSoJquery)/nFrontEndExperts100)	
+	barplot(matrix(c(aBackEndSoJqueryExp, aFrontEndSoJqueryExp), 2, byrow=T), ylim=c(0,100), xlim=c(0,10), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), legend.text=c("Back-end", "Front-end"), names.arg=cExperiencias, main="Uso de Apenas jQuery")
+
+	aBackEndFrameworkJSExp = c(nrow(ssBackEndInexperienteFrameworkJS)/nBackEndInexperientes100, nrow(ssBackEndPoucoExperienteFrameworkJS)/nBackEndPoucoExperientes100, nrow(ssBackEndExperienteFrameworkJS)/nBackEndExperientes100, nrow(ssBackEndExpertsFrameworkJS)/nBackEndExperts100)
+	aFrontEndFrameworkJSExp = c(nrow(ssFrontEndInexperienteFrameworkJS)/nFrontEndInexperientes100, nrow(ssFrontEndPoucoExperienteFrameworkJS)/nFrontEndPoucoExperientes100, nrow(ssFrontEndExperienteFrameworkJS)/nFrontEndExperientes100, nrow(ssFrontEndExpertsFrameworkJS)/nFrontEndExperts100)	
+	barplot(matrix(c(aBackEndFrameworkJSExp, aFrontEndFrameworkJSExp), 2, byrow=T), ylim=c(0,100), xlim=c(0,10), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), legend.text=c("Back-end", "Front-end"), names.arg=cExperiencias, main="Uso de Outros Frameworks Javascript")
+
+
+# Exemplo de como salvar
+# png(filename="graficos/Novas_Ferramentas_Praticas_Comparacao_4_Experts.png", width=1146, height=528, pointsize=16)
+# barplot(matrix(c(aBackEndPraticasExperts, aFrontEndPraticasExperts), 2, byrow=T), ylim=c(0,100), xlim=c(0,20), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), names.arg=cFerramPraticas, main="Comparação\ndo Uso de Novas Ferramentas e Práticas\nentre Experts", legend.text=c("Back-end", "Front-end")
+# dev.off()
 
