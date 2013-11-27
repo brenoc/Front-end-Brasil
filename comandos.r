@@ -640,7 +640,7 @@ barplot(matrix(c(aBackEndExp, aFrontEndExp), 2, byrow=T), ylim=c(0,100), xlim=c(
 
 	aBackEndFrameworkJSExp = c(nrow(ssBackEndInexperienteFrameworkJS)/nBackEndInexperientes100, nrow(ssBackEndPoucoExperienteFrameworkJS)/nBackEndPoucoExperientes100, nrow(ssBackEndExperienteFrameworkJS)/nBackEndExperientes100, nrow(ssBackEndExpertsFrameworkJS)/nBackEndExperts100)
 	aFrontEndFrameworkJSExp = c(nrow(ssFrontEndInexperienteFrameworkJS)/nFrontEndInexperientes100, nrow(ssFrontEndPoucoExperienteFrameworkJS)/nFrontEndPoucoExperientes100, nrow(ssFrontEndExperienteFrameworkJS)/nFrontEndExperientes100, nrow(ssFrontEndExpertsFrameworkJS)/nFrontEndExperts100)	
-	barplot(matrix(c(aBackEndFrameworkJSExp, aFrontEndFrameworkJSExp), 2, byrow=T), ylim=c(0,100), xlim=c(0,10), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), legend.text=c("Back-end", "Front-end"), names.arg=cExperiencias, main="Uso de Outros Frameworks Javascript")
+	barplot(matrix(c(aBackEndFrameworkJSExp, aFrontEndFrameworkJSExp), 2, byrow=T), ylim=c(0,100), xlim=c(0,10), ylab="%", space=c(0,0.1), density=5, angle=0, cex.names=0.7, beside=T, col=c("blue", "red"), legend.text=c("Back-end", "Front-end"), names.arg=cExperiencias, main="Uso de Frameworks Javascript")
 
 ## Processos
 	
