@@ -1,0 +1,253 @@
+1 - Você mora no Brasil?
+Sim
+Não
+
+Se sim, vá para a 2
+Se não, vá para a 3
+
+2 - Qual estado você mora?
+Acre 
+Alagoas 
+Amapá 
+Amazonas 
+Bahia 
+Ceará 
+Distrito Federal 
+Espírito Santo 
+Goiás 
+Maranhão 
+Mato Grosso 
+Mato Grosso do Sul 
+Minas Gerais 
+Pará  
+Paraíba 
+Paraná 
+Pernambuco 
+Piauí 
+Rio de Janeiro 
+Rio Grande do Norte 
+Rio Grande do Sul 
+Rondônia 
+Roraima 
+Santa Catarina 
+São Paulo 
+Sergipe 
+Tocantins 
+
+3 - Qual perfil você mais se identifica?
+Desenvolvedor Front-end
+Desenvolvedor Back-end
+Web Designer
+Designer de Interação
+Outro
+
+Se "Desenvolvedor Front-end", vá para a 5
+Outra resposta, vá para a 4
+
+4 - Você é um desenvolvedor focado em front-end?
+Sim
+Não
+
+5 - Há quanto tempo você desenvolve front-end?
+Há mais de 2 anos
+Entre 1 a 2 anos
+Há menos de 1 ano
+Não desenvolvo ou estou começando agora
+
+6 - Você utiliza algum desses frameworks ou bibliotecas Javascript?
+jQuery
+AngularJS
+Backbone.js
+Ember.js
+KnockoutJS
+Outro
+
+7 - Você utiliza algum padrão de módulo (module pattern) Javascript?
+Sim
+Não
+Não sei
+
+Se sim, vá para a 8
+Outras repostas, vá para a 9
+
+8 - Qual padrão de módulo (module pattern) você utiliza?
+AMD
+CommonJS
+Outro
+
+9 - Você utiliza alguma ferramenta para gerenciamento de pacotes front-end?
+Sim
+Não
+
+Se sim, vá para a 10
+Se não, vá para a 11
+
+10 - Marque a(s) ferramenta(s) que você utiliza para gerenciamento de pacotes front-end:
+NPM
+Bower
+Jam
+Volo
+Outro
+
+11 - Você utiliza alguma ferramenta para a automatização de tarefas relacionadas ao desenvolvimento front-end? (ex: Grunt)
+Sim
+Não
+
+Se sim, vá para a 12
+Se não, vá para a 13
+
+12 - Marque a(s) ferramenta(s) que você utiliza para automatização de tarefas front-end: 
+Grunt
+Bash
+Rake
+Ant
+Outro
+Make
+Cake
+Gear
+Jake
+
+13 - Você desenvolve testes para o código Javascript?
+Sim
+Não
+
+Se sim, vá para a 14
+Se não, vá para a 17
+
+14 - Que tipo de testes você desenvolve?
+Unitários
+Perfomance
+Integração ou End-to-End
+Outro
+
+15 - Você utiliza alguma ferramenta para auxiliar a realização dos testes?
+Sim
+Não
+
+Se sim, vá para a 16
+Se não, vá para a 17
+
+16 - Marque a(s) ferramenta(s) que você utiliza para a realização dos testes:
+Jasmine
+QUnit
+Mocha
+Karma
+Sinon
+Outro
+
+17 - Você utiliza alguma ferramenta de controle de versão? (ex: Git)
+Sim
+Não
+
+Se sim, vá para a 18
+Se não, vá para a 19
+
+18 - Marque a(s) ferramenta(s) que você utiliza para controle de versão:
+Git
+Subversion
+Mercurial
+Rational
+Outro
+
+19 - Você utiliza algum pré-processador CSS? (ex: LESS)
+Sim
+Não
+
+Se sim, vá para a 20
+Se não, vá para a 21
+
+20 - Marque a(s) ferramenta(s) que você utiliza para pré-processamento de CSS:
+Sass
+LESS
+Stylus
+Roole
+Outro
+
+21 - Você usa algum framework CSS? (ex: Bootstrap)
+Sim
+Não
+
+Se sim, vá para a 22
+Se não, vá para a 23
+
+22 - Marque o(s) framework(s) CSS que você utiliza:
+Twitter Bootstrap
+Foundation
+Pure CSS
+Topcoat
+Outro
+
+23 - Você usa alguma template-engine? (ex: Handlebars.js)
+Sim
+Não
+
+Se sim, vá para a 24
+Se não, vá para a 25
+
+24 - Marque a(s) template-engine(s) que você utiliza:
+Handlebars.js
+Jade
+Mustache.js
+dust.js
+A do próprio framework
+Outro
+
+25 - Você utiliza alguma outra linguagem para escrever Javascript? (ex: Coffescript)
+Sim
+Não
+
+Se sim, vá para a 26
+Se não, vá para a 27
+
+26 - Marque qual linguagem você escreve Javascript:
+Coffeescript
+LiveScript
+Clojure
+Dart
+Outro
+
+27 - Caso se aplique, marque os processos que você costuma realizar no código que irá para produção:
+Minifico os arquivos CSS
+Otimizo as imagens
+Minifico os arquivos JS
+Combino arquivos CSS
+Combino arquivos JS
+Minifico o HTML
+Uso arquivos servidos em um CDN público
+Uso arquivos servidos em um CDN próprio
+Outro
+
+28 - Quais navegadores antigos você dá suporte?
+Internet Explorer 8 e mais novos
+Internet Explorer 7 e mais novos
+Internet Explorer 6 e mais novos
+Não dou suporte a navegadores antigos, desenvolvo para os novos
+
+29 - Qual navegador você utiliza para desenvolvimento?
+Chrome
+Firefox
+Internet Explorer
+Opera
+Safari
+Outro
+
+30 - Como você vê o seu desenvolvimento para mobile?
+Desenvolvo o site responsivo
+Verifico apenas se o site funciona
+Desenvolvo mobile-first
+Não sei desenvolver para mobile ou não me preocupo
+Há uma versão do site específica para mobile
+
+31 - Qual editor de código você utiliza?
+Sublime Text
+Notepad++
+Dreamweaver
+Visual Studio
+VI / VIM
+WebStorm (Jet Brains)
+TextMate
+Emacs
+Outro
+
+32 - A sua resposta para essa pergunta é muito importante! Qual a mudança mais recente na forma de desenvolver que mais contribuiu para melhorar a qualidade dos seus projetos? (ex: uso de alguma ferramenta, linguagem, processo, etc)
+(reposta aberta)
